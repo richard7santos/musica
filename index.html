@@ -1,28 +1,342 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html class="light" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
-    <title>Meu site de Musicas</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Work+Sans:wght@400;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "inverse-surface": "#313124",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#e3bf65",
+                        "on-secondary-container": "#7a532a",
+                        "on-secondary-fixed": "#2c1600",
+                        "surface-bright": "#fdfae7",
+                        "surface-variant": "#e6e3d0",
+                        "primary-container": "#2d5a27",
+                        "outline-variant": "#c2c9bb",
+                        "on-primary-fixed": "#002201",
+                        "on-primary-container": "#9dd090",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5a4400",
+                        "tertiary-fixed-dim": "#e7c268",
+                        "surface-container-highest": "#e6e3d0",
+                        "outline": "#72796e",
+                        "on-tertiary-fixed": "#251a00",
+                        "tertiary-fixed": "#ffdf96",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fdfae7",
+                        "secondary": "#7d562d",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#654d00",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "secondary-fixed": "#ffdcbd",
+                        "background": "#fdfae7",
+                        "on-background": "#1c1c11",
+                        "surface-dim": "#dddbc8",
+                        "surface-container": "#f1eedb",
+                        "inverse-on-surface": "#f4f1de",
+                        "surface-tint": "#3b6934",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f7f4e1",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#bcf0ae",
+                        "tertiary": "#493700",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1c1c11",
+                        "primary-fixed-dim": "#a1d494",
+                        "primary": "#154212",
+                        "on-surface-variant": "#42493e",
+                        "secondary-container": "#ffca98",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#23501e",
+                        "inverse-primary": "#a1d494",
+                        "surface-container-high": "#ece9d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "margin-mobile": "1rem",
+                        "base": "1rem",
+                        "container-max": "1120px",
+                        "unit": "4px",
+                        "margin-desktop": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Noto Serif"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Noto Serif"],
+                        "headline-lg": ["Noto Serif"],
+                        "label-caps": ["Work Sans"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAQQzhBbtTkKC-vv7QvTNSNJj3tFl_qpIXikn6Cy9EMq6Vzi-Zd4RLqy2PSP4caIT-fM96O1oEmvaLBQ94mLZCNCv1c5ANOYqicqoFbHaHb2s9w-fs3Zh3JksjITfkVLPpWDsc95RP3DEv4VaJJKYJt3Q9jm3Eztu9SPMzVcFsTaDA9fJE18HJ6_9n1N9ltiFeHh_cNn67iTCQvwRUijVxljzHelRCrgx5GyYaJcCCWRfzIrav68HHl5zcODzsdUtk4PxKU3SQXkg8)
+        }
+
+        .bracket-card {
+            position: relative
+        }
+
+        .bracket-card::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid #7d562d;
+            border-left: 2px solid #7d562d
+        }
+
+        .bracket-card::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            border-bottom: 2px solid #7d562d;
+            border-right: 2px solid #7d562d
+        }
+    </style>
 </head>
 
-<body>
-    <div class="header">
-        <div>
-            <ul class="nav">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./pages/pagina2.html">Sobre</a></li>
-                <li><a href="./pages/pagina3.html">Contato</a></li>
-            </ul>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container">
+    <div class="noise-overlay"></div>
+    <!-- TopAppBar -->
+    <header class="bg-[#F5F2EA] dark:bg-[#1A1A17] border-b border-stone-300 dark:border-stone-800 sticky top-0 z-50">
+        <nav class="flex justify-between items-center px-8 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="text-2xl font-black italic tracking-tighter text-[#2D5A27] dark:text-[#4A8A3F] font-serif">
+                Bossa Nova Echoes
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-stone-600 dark:text-stone-400 hover:text-[#2D5A27] font-serif tracking-tight transition-all duration-300"
+                    href="#artistas">Artists</a>
+            </div>
+            <div class="flex items-center gap-4 text-[#2D5A27] dark:text-[#4A8A3F]">
+                <button class="p-2 hover:bg-stone-100/50 dark:hover:bg-stone-800/50 rounded-full transition-all">
+                    <span class="material-symbols-outlined" data-icon="search">search</span>
+                </button>
+                <button class="p-2 hover:bg-stone-100/50 dark:hover:bg-stone-800/50 rounded-full transition-all">
+                    <span class="material-symbols-outlined" data-icon="album">album</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative w-full overflow-hidden bg-surface-container-high py-20 px-8 border-b border-stone-300">
+            <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-16">
+                <div class="w-full md:w-1/2 z-10">
+                    <span class="font-label-caps text-secondary mb-4 block uppercase">Est. 1958 Rio de Janeiro</span>
+                    <h1 class="font-display-lg text-display-lg text-primary mb-6 leading-none">The Rhythm of Saudade.
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-8 italic">
+                        "Bossa nova is a cool, swaying breath of fresh air that redefined the soul of Brazilian music
+                        forever."
+                    </p>
+                    <button
+                        class="px-8 py-3 border border-secondary bg-secondary text-surface font-label-caps hover:bg-on-secondary-fixed transition-colors">
+                        EXPLORE THE ARCHIVE
+                    </button>
+                </div>
+                <div class="w-full md:w-1/2 relative">
+                    <div
+                        class="aspect-[4/5] bg-surface-dim border border-outline-variant p-4 shadow-sm transform rotate-2">
+                        <img alt="Vintage Guitar"
+                            class="w-full h-full object-cover grayscale brightness-90 contrast-125"
+                            data-alt="Vintage acoustic guitar leaning against a textured wall in a sunlit 1950s Rio apartment, grainy black and white film style."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzRMb6iQX1spuL5r6nUIT-itj-7O1_Dvv_hbtcZOzuW6-uFaglmj2YQvfjuOyvX6lM08_hUe9Jv9PlKb6euXHqu4OQUOUUivaGC1M7j-efMM9GBk3WFqm7vvXjtN6QqhMzm3kApNryRennwM2o1if6Wt5kVi8LS0POlP3M_hWeme146kzi8bD3AT3-YfbD640MsRMs11AAwii8CcWjkbsgE8qeCKLQyzTNMu2jgx2e3uz1h9HECkeFIwLc2K9vqAG78k1Bsvq66Ac" />
+                        <div
+                            class="absolute bottom-8 right-8 bg-surface-bright/90 px-4 py-2 border border-secondary text-secondary font-serif italic text-sm">
+                            Ipanema, 1962
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Divider -->
+        <div class="w-full max-w-screen-2xl mx-auto px-8 my-12">
+            <div class="sepia-rule"></div>
         </div>
-    </div>
-
-    <h1>Página inicial</h1>
-    <div class="footer">
-        <p>Copyright © 2024 Meu site de Musicas. Todos os direitos reservados.</p>
-    </div>
+        <!-- Os Pioneiros Section -->
+        <section class="px-8 py-20 max-w-screen-2xl mx-auto" id="artistas">
+            <div class="mb-16">
+                <h2 class="font-display-lg text-headline-lg text-on-surface mb-2">Os Pioneiros</h2>
+                <p class="font-body-md text-on-surface-variant uppercase tracking-widest text-xs">The Architects of the
+                    New Wave</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- João Gilberto -->
+                <a href="./pages/jo_o_gilberto_pioneiro_da_bossa_nova/code.html">
+                    <div class="group cursor-pointer">
+                        <div
+                            class="bracket-card bg-surface-container p-6 border border-stone-300 group-hover:bg-surface-container-low transition-colors duration-500">
+                            <div class="aspect-square bg-stone-200 mb-6 overflow-hidden border border-stone-400">
+                                <img alt="João Gilberto Style"
+                                    class="w-full h-full object-cover sepia-[.5] contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
+                                    data-alt="Retro stylized portrait of a man with a guitar, 1950s aesthetic, sharp shadows, high contrast, warm sepia tones."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuALZISA704Dbu9cslNopKzZcRonBamzoRoOV-zP_N1CRBxP60urP105cYc1od-uyrIVKWsRzOKd4KT8xrxik4xwsmQIX-Z1jB-QcV7oDf1dnSxRPy_tJVzSo_St9Q7lfM9iKAubVS6-_GtTGbuMbPH8NuCfFTThiYYno-Zl2MEQhHxzNY5e55Vj-uLL5b_0T9Dn69SluPu_Bwy6Hwpw6X2tSxv5tVfpQM4YTLt0hGKaDn5OX_9BBSZQmdbkY0pEiXq2eMb88A8viEo" />
+                            </div>
+                            <h3 class="font-headline-md text-headline-md text-primary mb-2">João Gilberto</h3>
+                            <p class="font-body-md text-on-surface-variant italic mb-4">"The Father of Bossa Nova"</p>
+                            <div class="flex items-center text-secondary font-label-caps text-xs gap-2">
+                                <span>VIEW BIOGRAPHY</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    data-icon="arrow_forward">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Elis Regina -->
+                <a href="./pages/elis_regina_a_pimentinha/code.html">
+                    <div class="group cursor-pointer translate-y-8">
+                        <div
+                            class="bracket-card bg-surface-container p-6 border border-stone-300 group-hover:bg-surface-container-low transition-colors duration-500">
+                            <div class="aspect-square bg-stone-200 mb-6 overflow-hidden border border-stone-400">
+                                <img alt="Elis Regina Style"
+                                    class="w-full h-full object-cover sepia-[.5] contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
+                                    data-alt="Vintage photograph of a female singer at a microphone, vibrant 1960s Brazil style, soft lighting, grainy texture."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDokJ7M8nFInG41cNsutRgkmpeS-7AbQMKNqVZH-H-eNZ3JS3fQi63fg494_cofvaKvIAfCsYlHmnlggu-49SiIWm5tRWLiborQ0kpN8vUdnqxo8b3uHydC6ol44M57nv-WBsxVx7o5dHH_WNfW6jiojMcPrFgRzSp8t1LSahe_iLS1lRgo5VwI3YyXJl_bzG2_Q1dGhFywCP9fwJDg89XLp9jsoI4PEE878e2nQh1KWLU47qio0RNmqb-kzsuOhnsTlj6OAvwD3ds" />
+                            </div>
+                            <h3 class="font-headline-md text-headline-md text-primary mb-2">Elis Regina</h3>
+                            <p class="font-body-md text-on-surface-variant italic mb-4">"Pimentinha: The Voice of
+                                Brazil"
+                            </p>
+                            <div class="flex items-center text-secondary font-label-caps text-xs gap-2">
+                                <span>VIEW BIOGRAPHY</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    data-icon="arrow_forward">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Tom Jobim -->
+                <a href="./pages/tom_jobim_o_maestro_da_bossa/code.html">
+                    <div class="group cursor-pointer">
+                        <div
+                            class="bracket-card bg-surface-container p-6 border border-stone-300 group-hover:bg-surface-container-low transition-colors duration-500">
+                            <div class="aspect-square bg-stone-200 mb-6 overflow-hidden border border-stone-400">
+                                <img alt="Tom Jobim Style"
+                                    class="w-full h-full object-cover sepia-[.5] contrast-125 saturate-50 group-hover:scale-105 transition-transform duration-700"
+                                    data-alt="Piano keys close-up in a dimly lit jazz club, 1950s mood, soft focus, dust motes in light, sepia and black tones."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo6sQra3mN27q_PJ7pUxUPI4RqZ27Y7YBMQ2JHG8W6IsmdNSek6P30HBFZrj817QT-jsQRFVhOq1OWnRn8vBNWnQqmYVNzVKqlVCFblxzT6-mkgAhsLSQt5Kta99c9797Uve_UPs4H0f1XwS58X2_UrJruc_Aj1BPi4-gD5n6RGu58CGvb5kiwNQsysiQWgZK_HCY1poOSDmcw0wCNqq12evjxWPnjcxV3vblP6iMIdjqCxz10ipoHzhSfmBY5EQJbxbcfITM-GHA" />
+                            </div>
+                            <h3 class="font-headline-md text-headline-md text-primary mb-2">Tom Jobim</h3>
+                            <p class="font-body-md text-on-surface-variant italic mb-4">"The Maestro of Ipanema"</p>
+                            <div class="flex items-center text-secondary font-label-caps text-xs gap-2">
+                                <span>VIEW BIOGRAPHY</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    data-icon="arrow_forward">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <!-- Vinyl CTA Section -->
+        <section class="mt-32 px-8 py-20 bg-[#2D5A27] text-[#FDFAE7]">
+            <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <div
+                        class="w-64 h-64 rounded-full border-4 border-dashed border-[#FDFAE7]/30 flex items-center justify-center p-2">
+                        <div
+                            class="w-full h-full rounded-full bg-[#1c1c11] flex items-center justify-center relative shadow-2xl">
+                            <!-- Groove texture simulation -->
+                            <div class="absolute inset-4 rounded-full border border-[#ffffff11]"></div>
+                            <div class="absolute inset-8 rounded-full border border-[#ffffff11]"></div>
+                            <div class="absolute inset-12 rounded-full border border-[#ffffff11]"></div>
+                            <div
+                                class="w-20 h-20 bg-tertiary-fixed rounded-full border-4 border-[#1c1c11] flex items-center justify-center">
+                                <span
+                                    class="text-[8px] font-bold text-on-tertiary-fixed text-center uppercase tracking-tighter">Bossa<br />Nova</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <h2 class="font-display-lg text-headline-lg mb-4">Join the Digital Archive</h2>
+                    <p class="font-body-lg mb-8 opacity-90 max-w-xl">Preserve the legacy of Brazilian music. Access rare
+                        recordings, handwritten lyric sheets, and exclusive interviews from the golden age of Bossa
+                        Nova.</p>
+                    <div class="flex gap-4">
+                        <button
+                            class="bg-[#A04000] text-[#FDFAE7] px-8 py-3 font-label-caps border border-[#A04000] hover:bg-[#D97706] transition-colors">SUBSCRIBE
+                            NOW</button>
+                        <button
+                            class="border border-[#FDFAE7] text-[#FDFAE7] px-8 py-3 font-label-caps hover:bg-[#FDFAE7] hover:text-[#2D5A27] transition-colors">LEARN
+                            MORE</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="w-full border-t border-dashed border-stone-400 dark:border-stone-700 mt-20 bg-[#EFEBE0] dark:bg-[#141412]">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6 w-full max-w-screen-2xl mx-auto">
+            <div class="text-lg font-bold text-stone-700 dark:text-stone-300 font-serif">
+                Saudade Digital Archive
+            </div>
+            <div class="flex gap-8 font-serif text-xs uppercase tracking-widest text-stone-500">
+                <a class="hover:text-stone-800 dark:hover:text-stone-200 hover:underline decoration-stone-400 transition-opacity"
+                    href="#">History</a>
+                <a class="hover:text-stone-800 dark:hover:text-stone-200 hover:underline decoration-stone-400 transition-opacity"
+                    href="#">Genres</a>
+                <a class="hover:text-stone-800 dark:hover:text-stone-200 hover:underline decoration-stone-400 transition-opacity"
+                    href="#">Manifesto</a>
+                <a class="hover:text-stone-800 dark:hover:text-stone-200 hover:underline decoration-stone-400 transition-opacity"
+                    href="#">Archive</a>
+            </div>
+            <div class="font-serif text-xs uppercase tracking-widest text-stone-500 text-center md:text-right">
+                © 1958 Saudade Digital Archive. A Tribute to MPB Pioneers.
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
