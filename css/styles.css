@@ -29,4 +29,13 @@ a {
     text-decoration: none;
 }
 
-/*outra coisa*/
+/* rodapé*/
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
