@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Work+Sans:wght@400;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "inverse-surface": "#313124",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#e3bf65",
+                        "on-secondary-container": "#7a532a",
+                        "on-secondary-fixed": "#2c1600",
+                        "surface-bright": "#fdfae7",
+                        "surface-variant": "#e6e3d0",
+                        "primary-container": "#2d5a27",
+                        "outline-variant": "#c2c9bb",
+                        "on-primary-fixed": "#002201",
+                        "on-primary-container": "#9dd090",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5a4400",
+                        "tertiary-fixed-dim": "#e7c268",
+                        "surface-container-highest": "#e6e3d0",
+                        "outline": "#72796e",
+                        "on-tertiary-fixed": "#251a00",
+                        "tertiary-fixed": "#ffdf96",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fdfae7",
+                        "secondary": "#7d562d",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#654d00",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "secondary-fixed": "#ffdcbd",
+                        "background": "#fdfae7",
+                        "on-background": "#1c1c11",
+                        "surface-dim": "#dddbc8",
+                        "surface-container": "#f1eedb",
+                        "inverse-on-surface": "#f4f1de",
+                        "surface-tint": "#3b6934",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f7f4e1",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#bcf0ae",
+                        "tertiary": "#493700",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1c1c11",
+                        "primary-fixed-dim": "#a1d494",
+                        "primary": "#154212",
+                        "on-surface-variant": "#42493e",
+                        "secondary-container": "#ffca98",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#23501e",
+                        "inverse-primary": "#a1d494",
+                        "surface-container-high": "#ece9d6"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Noto Serif"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Noto Serif"],
+                        "headline-lg": ["Noto Serif"],
+                        "label-caps": ["Work Sans"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+
+        .sepia-rule {
+            border-bottom: 1px solid #72796e44;
+        }
+
+        .corner-bracket {
+            position: relative;
+        }
+
+        .corner-bracket::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid #7d562d;
+            border-left: 2px solid #7d562d;
+        }
+
+        .vinyl-groove {
+            background: repeating-radial-gradient(circle, #1c1c11 0, #313124 2px, #1c1c11 4px);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container">
+    <div class="noise-overlay"></div>
+    <!-- TopAppBar -->
+    <header
+        class="bg-[#F5F2EA] dark:bg-[#1A1A17] docked full-width top-0 border-b border-stone-300 dark:border-stone-800 sticky z-50">
+        <div class="flex justify-between items-center px-8 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="text-2xl font-black italic tracking-tighter text-[#2D5A27] dark:text-[#4A8A3F]">
+                Bossa Nova Echoes
+            </div>
+            <nav class="hidden md:flex gap-8 items-center font-serif tracking-tight">
+                <a class="text-stone-600 dark:text-stone-400 hover:text-[#2D5A27] transition-all duration-300"
+                    href="../../index.html">Artists</a>
+            </nav>
+            <div class="flex items-center gap-4 text-[#2D5A27] dark:text-[#4A8A3F]">
+                <span
+                    class="material-symbols-outlined hover:bg-stone-100/50 p-2 rounded transition-all cursor-pointer">album</span>
+                <span
+                    class="material-symbols-outlined hover:bg-stone-100/50 p-2 rounded transition-all cursor-pointer">search</span>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-screen-2xl mx-auto px-8 md:px-12 py-12">
+        <!-- Hero Section: The Master's Profile -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+            <div class="md:col-span-7 flex flex-col justify-center">
+                <span class="font-label-caps text-label-caps text-secondary mb-4 tracking-[0.2em] uppercase">O Maestro
+                    Soberano</span>
+                <h1 class="font-display-lg text-display-lg text-primary mb-6 leading-none">Antônio Carlos Jobim</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-8 italic">
+                    "O que importa é a música, a amizade, o amor. O resto é fumaça."
+                </p>
+                <div class="flex gap-4">
+                    <button
+                        class="bg-secondary text-surface px-8 py-3 font-label-caps border border-secondary hover:bg-transparent hover:text-secondary transition-all">DISCOGRAPHY</button>
+                    <button
+                        class="border border-outline text-on-surface px-8 py-3 font-label-caps hover:bg-surface-variant transition-all">LISTEN
+                        NOW</button>
+                </div>
+            </div>
+            <div class="md:col-span-5 relative">
+                <div
+                    class="aspect-[4/5] bg-surface-container-high border border-outline-variant p-4 corner-bracket shadow-sm overflow-hidden">
+                    <img alt="Tom Jobim" class="w-full h-full object-cover grayscale contrast-125"
+                        data-alt="high contrast black and white vintage portrait of Tom Jobim sitting at a piano with soft hazy window lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi-Opl7KCRUOEy8pEC475FdsrPn1C6LgURose2RoFYmtx2wWISjwmmX0GJY8aTiz71D6CsU93wTgKlderJ7M7TkW5XbWBxtzQfQWVybcbmTmMAfg1Qf8V_B6OJYvSHqueiIc3HG-dvsKwIdZIDKMowSSPrxERnEixrp-fRRmVunMrV9830oYDE7IDHooYfEMQK7etHADBEHO53A9GxF-A3R3pSAddzfyXGl0qSCHtJq4B7xpKeNzQQYQ2J0Y2Mb3-NmBCUWOuP9eo" />
+                </div>
+                <div
+                    class="absolute -bottom-6 -left-6 w-32 h-32 vinyl-groove rounded-full border-4 border-on-background/10 hidden md:block">
+                </div>
+            </div>
+        </section>
+        <div class="sepia-rule mb-20 w-full"></div>
+        <!-- Bento Grid: Modernizing Harmony -->
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 gap-4">
+                <h2 class="font-headline-lg text-headline-lg text-primary">Harmonic Revolution</h2>
+                <span class="font-label-caps text-label-caps text-outline italic">DECONSTRUCTING THE BOSSA NOVA
+                    SOUND</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-6 h-auto md:h-[600px]">
+                <!-- Jazz Fusion -->
+                <div class="bg-surface-container border border-outline-variant p-8 flex flex-col justify-between">
+                    <div>
+                        <span class="material-symbols-outlined text-secondary mb-4"
+                            style="font-variation-settings: 'FILL' 1;">piano</span>
+                        <h3 class="font-headline-md text-headline-md mb-2">The Piano &amp; The Pen</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Integrating the sophisticated
+                            clusters of cool jazz with the syncopated heartbeat of the samba.</p>
+                    </div>
+                </div>
+                <!-- Graphic Notation/Sheet Music Aesthetic -->
+                <div
+                    class="md:col-span-2 bg-surface-container-low border border-outline-variant p-8 relative overflow-hidden flex items-end">
+                    <div class="absolute top-0 right-0 p-8 opacity-10">
+                        <span class="material-symbols-outlined text-[120px]">music_note</span>
+                    </div>
+                    <div class="z-10 max-w-md">
+                        <h3 class="font-headline-md text-headline-md mb-4 text-secondary">The Geometry of Saudade</h3>
+                        <p class="font-body-lg text-body-lg mb-4">Jobim didn't just write songs; he built atmospheric
+                            architecture. His use of altered chords and descending chromatic lines created a new
+                            emotional vocabulary for Brazil.</p>
+                        <div class="h-1 w-24 bg-tertiary-fixed-dim"></div>
+                    </div>
+                </div>
+                <!-- Ipanema Legacy -->
+                <div
+                    class="md:col-span-2 bg-[#fdfae7] border-dashed border-2 border-outline-variant p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <img class="w-full md:w-48 h-32 object-cover border border-outline"
+                        data-alt="vintage 1960s grainy photograph of Ipanema beach in Rio de Janeiro with iconic sidewalk patterns and distant mountains"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbaLJvAxBcqTw8cKYHzDxv_Z3pf6bWMGLPHvx7Hy85mtlmRT6iuHSOysyCRqn47wDHvByhGKfzj4EDUy_CEJ4b8Flc6AADlDCJYu7K3egvzUT6bQBFIa8xIJAXfj4-X2izEdWVfDH2VnarOeprN89a7R3GiVfBW0dGDd7ZWloyzXWehJmqiF03RwVJ-_OlMTKYSNxU3peYf9Wn1ar8a9o-vsRTQktTzdwNRYqRflKnAPQkRoX7vVcqVFEKl4ynk-KTe7C9AIX5eqQ" />
+                    <div>
+                        <h3 class="font-headline-md text-headline-md mb-2">Garota de Ipanema</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Released in 1962, this
+                            collaboration with Vinícius de Moraes became the second most recorded pop song in history,
+                            defining a nation's soul for the world.</p>
+                    </div>
+                </div>
+                <!-- International Reach -->
+                <div class="bg-primary text-surface p-8 flex flex-col justify-center text-center">
+                    <h3 class="font-label-caps text-label-caps mb-4 tracking-widest text-primary-fixed">GLOBAL IMPACT
+                    </h3>
+                    <p class="font-display-lg text-headline-lg italic">"Brazil's Gershwin"</p>
+                </div>
+            </div>
+        </section>
+        <!-- Lyric/Asymmetric Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20 items-center">
+            <div class="order-2 md:order-1">
+                <blockquote
+                    class="font-display-lg text-display-lg text-primary mb-8 border-l-4 border-secondary-fixed-dim pl-8 py-2">
+                    "É pau, é pedra, é o fim do caminho..."
+                </blockquote>
+                <div class="space-y-4 text-on-surface-variant font-body-md">
+                    <p>In 1972, Jobim composed <strong class="text-on-surface">Águas de Março</strong> (Waters of
+                        March). Often cited as one of the greatest songs ever written, its cyclical,
+                        stream-of-consciousness lyrics and descending melodic patterns mirrored the heavy tropical rains
+                        of Rio de Janeiro.</p>
+                    <p>It was a testament to his ability to find the universal in the local—the philosophical in the
+                        mundane.</p>
+                </div>
+            </div>
+            <div
+                class="order-1 md:order-2 bg-surface-container-highest p-12 flex items-center justify-center border border-outline-variant">
+                <div class="text-center">
+                    <span class="material-symbols-outlined text-primary text-6xl mb-6">waves</span>
+                    <h4 class="font-headline-md text-headline-md mb-2">The Nature Motif</h4>
+                    <p class="font-label-caps text-label-caps text-outline italic">BIRDS, RAIN, AND THE FOREST</p>
+                </div>
+            </div>
+        </section>
+        <!-- Discography Horizontal Scroll (Visual Representation) -->
+        <section class="mb-20">
+            <h2 class="font-headline-lg text-headline-lg text-primary mb-12">Essential Archive</h2>
+            <div class="flex overflow-x-auto gap-8 pb-8 no-scrollbar">
+                <!-- Album 1 -->
+                <div class="min-w-[280px] group cursor-pointer">
+                    <div class="aspect-square bg-stone-300 mb-4 border border-outline relative overflow-hidden">
+                        <img alt="Wave Album"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="album cover aesthetic with abstract blue wave shapes and vintage 1967 typography style"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAArqh3dhSah2qSrmJgStpIRswqMOHor8IYtUg-6WO01FnON-ENjI89utwWNEUh_ehmiYgMBVuQsGC03eLlO1Sr4KZ4sr8A5beVmjinlCqYw-MF7twQ2cqFJ5z5W6gQP3xAN9cMNtwmacT5Pfo8dJGv-2wnCGQuXCLeqfXa2MhYFluYeUFt_7glhZCVpIx-InQL0CDMDUDZeW9nd_RMRNJtSUmWLC1A9PCj7v5aVeoDh4_mhRAIxu0tejJigJQF7WnYEsiM2-Uln48" />
+                        <div class="absolute inset-0 bg-secondary/10 group-hover:bg-transparent transition-all"></div>
+                    </div>
+                    <p class="font-label-caps text-label-caps text-secondary">1967</p>
+                    <h5 class="font-headline-md text-body-lg font-bold">Wave</h5>
+                </div>
+                <!-- Album 2 -->
+                <div class="min-w-[280px] group cursor-pointer">
+                    <div class="aspect-square bg-stone-300 mb-4 border border-outline relative overflow-hidden">
+                        <img alt="Getz/Gilberto"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="classic minimalist album cover orange and black abstract shapes for Getz Gilberto bossa nova album"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxMoFM3hZVFVRCHPiRY_FgrpROPSINptvfxdBMm0zJXlwu_A3pAoJ-D1421SZh2Xuz5b6y1YY09IvJ-hJOnOaKpVhZHutl4-CGdkQGqDLVPxayBbXriilBHcDrF9-ZK9-K64dbWsgiuZQFFbrNEDW6lM7pw4DQBei8FlJ8cFZUYdnz5sNNG5QY6f1Us9S1M--i3InvDQf1sMdCU6tqtXY97-kpZljRonA29zeQ5ZBobaoEoQ_stXpyN4l_lqfg5ZXrU6K-jQ2IRno" />
+                        <div class="absolute inset-0 bg-secondary/10 group-hover:bg-transparent transition-all"></div>
+                    </div>
+                    <p class="font-label-caps text-label-caps text-secondary">1964</p>
+                    <h5 class="font-headline-md text-body-lg font-bold">Getz/Gilberto</h5>
+                </div>
+                <!-- Album 3 -->
+                <div class="min-w-[280px] group cursor-pointer">
+                    <div class="aspect-square bg-stone-300 mb-4 border border-outline relative overflow-hidden">
+                        <img alt="Urubu"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="vintage photographic album cover of a large bird soaring over Brazilian rainforest with warm sepia tones"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCK0YpJslid_RA32Z01DNU_bRZUMMT7v3uE1NCrpfeJS6zwUzHYa57v6A0XUzSqVxRtxGFsjBQi8v2-fAId-GDWxzX3M0WZhTYEKlPxInD73gE2LRuCvwOKs3Ul2JST1iXlnml0n-00XxC7ei7snX6r4X1-Y2nqQWFieReIhE251N5YSORyjNBJ3IVORKeFy-skyQ6epKJhyzy_VDbS9eKOV9LScF830K3jVIUPmZd4z7jRAlubaF3avxn0m-2BvDeoolImoOjJyg" />
+                        <div class="absolute inset-0 bg-secondary/10 group-hover:bg-transparent transition-all"></div>
+                    </div>
+                    <p class="font-label-caps text-label-caps text-secondary">1976</p>
+                    <h5 class="font-headline-md text-body-lg font-bold">Urubu</h5>
+                </div>
+                <!-- Album 4 -->
+                <div class="min-w-[280px] group cursor-pointer">
+                    <div class="aspect-square bg-stone-300 mb-4 border border-outline relative overflow-hidden">
+                        <img alt="Elis &amp; Tom"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="candid black and white photograph of Elis Regina and Tom Jobim laughing in a recording studio with vintage mics"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ1MvnC77asL8DgYRInmiUAdmlgWMRFMd5LeyUw48_A93-Y3cwQAoel4GgH8KZW3xgCFETbclqX34tLHVXJnihzIFRQsyDX7Of3H9X_jeTU6eOimcRju39yirebSSRBhQ6EfG1u0lTNHzxk5IqkVI9bsbsK1HIbmIGKU1VBBmRk9Gt_7TH1tdhHp56jLss5_LKdAvGwVYACogyami34q0UyWsQ1m2HmqmyWBKMSt4xAkbW2Y91I6sNHVMFYzbWfwcc3ftswdENubg" />
+                        <div class="absolute inset-0 bg-secondary/10 group-hover:bg-transparent transition-all"></div>
+                    </div>
+                    <p class="font-label-caps text-label-caps text-secondary">1974</p>
+                    <h5 class="font-headline-md text-body-lg font-bold">Elis &amp; Tom</h5>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="bg-[#EFEBE0] dark:bg-[#141412] w-full border-t border-dashed border-stone-400 dark:border-stone-700 mt-20">
+        <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6 w-full">
+            <div class="text-lg font-bold text-stone-700 dark:text-stone-300 font-serif">
+                Bossa Nova Echoes
+            </div>
+            <div class="flex gap-8 font-serif text-xs uppercase tracking-widest text-stone-500">
+                <a class="hover:text-stone-800 dark:hover:text-stone-200 hover:underline decoration-stone-400 transition-opacity"
+                    href="#">History</a>
+                <a class="hover:text-stone-800 dark:hover:text-stone-200 hover:underline decoration-stone-400 transition-opacity"
+                    href="#">Genres</a>
+                <a class="hover:text-stone-800 dark:hover:text-stone-200 hover:underline decoration-stone-400 transition-opacity"
+                    href="#">Manifesto</a>
+                <a class="hover:text-stone-800 dark:hover:text-stone-200 hover:underline decoration-stone-400 transition-opacity"
+                    href="#">Archive</a>
+            </div>
+            <div class="font-serif text-xs uppercase tracking-widest text-stone-500">
+                © 1958 Saudade Digital Archive. A Tribute to MPB Pioneers.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
