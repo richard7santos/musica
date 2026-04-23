@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400;1,700&amp;family=Work+Sans:wght@400;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "inverse-surface": "#313124",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#e3bf65",
+                        "on-secondary-container": "#7a532a",
+                        "on-secondary-fixed": "#2c1600",
+                        "surface-bright": "#fdfae7",
+                        "surface-variant": "#e6e3d0",
+                        "primary-container": "#2d5a27",
+                        "outline-variant": "#c2c9bb",
+                        "on-primary-fixed": "#002201",
+                        "on-primary-container": "#9dd090",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5a4400",
+                        "tertiary-fixed-dim": "#e7c268",
+                        "surface-container-highest": "#e6e3d0",
+                        "outline": "#72796e",
+                        "on-tertiary-fixed": "#251a00",
+                        "tertiary-fixed": "#ffdf96",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fdfae7",
+                        "secondary": "#7d562d",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#654d00",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "secondary-fixed": "#ffdcbd",
+                        "background": "#fdfae7",
+                        "on-background": "#1c1c11",
+                        "surface-dim": "#dddbc8",
+                        "surface-container": "#f1eedb",
+                        "inverse-on-surface": "#f4f1de",
+                        "surface-tint": "#3b6934",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f7f4e1",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#bcf0ae",
+                        "tertiary": "#493700",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1c1c11",
+                        "primary-fixed-dim": "#a1d494",
+                        "primary": "#154212",
+                        "on-surface-variant": "#42493e",
+                        "secondary-container": "#ffca98",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#23501e",
+                        "inverse-primary": "#a1d494",
+                        "surface-container-high": "#ece9d6"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Noto Serif"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Noto Serif"],
+                        "headline-lg": ["Noto Serif"],
+                        "label-caps": ["Work Sans"],
+                        "body-lg": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .scrapbook-border {
+            border: 1px solid #72796e;
+            position: relative;
+        }
+
+        .scrapbook-border::before,
+        .scrapbook-border::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #72796e;
+        }
+
+        .corner-tl::before {
+            top: -4px;
+            left: -4px;
+            border-right: 0;
+            border-bottom: 0;
+        }
+
+        .corner-tr::after {
+            top: -4px;
+            right: -4px;
+            border-left: 0;
+            border-bottom: 0;
+        }
+
+        .sepia-rule {
+            border-bottom: 1px solid #72796e;
+            opacity: 0.3;
+        }
+
+        .vinyl-groove {
+            background: repeating-radial-gradient(circle at center, #1c1c11 0, #313124 2px, #1c1c11 4px);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen selection:bg-secondary-container">
+    <div class="noise-overlay"></div>
+    <!-- TopAppBar from JSON -->
+    <header
+        class="bg-[#F5F2EA] dark:bg-[#1A1A17] docked full-width top-0 border-b border-stone-300 dark:border-stone-800 z-50">
+        <div class="flex justify-between items-center px-8 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="text-2xl font-black italic tracking-tighter text-[#2D5A27] dark:text-[#4A8A3F]">
+                Bossa Nova Echoes
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a class="font-serif tracking-tight text-stone-600 dark:text-stone-400 hover:text-[#2D5A27] transition-all duration-300"
+                    href="../../index.html">Artists</a>
+            </nav>
+            <div class="flex items-center gap-4 text-[#2D5A27]">
+                <span
+                    class="material-symbols-outlined cursor-pointer hover:bg-stone-100/50 p-2 rounded transition-all duration-300"
+                    data-icon="album">album</span>
+                <span
+                    class="material-symbols-outlined cursor-pointer hover:bg-stone-100/50 p-2 rounded transition-all duration-300"
+                    data-icon="search">search</span>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-screen-xl mx-auto px-6 py-12 md:py-20 lg:px-24">
+        <!-- Hero Section: Scrapbook Style -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32">
+            <div class="lg:col-span-7 space-y-8">
+                <div
+                    class="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container font-label-caps text-label-caps mb-4">
+                    PIONEER OF SAUDADE
+                </div>
+                <h1 class="font-display-lg text-display-lg text-primary leading-none tracking-tighter">
+                    João Gilberto: <br />The Architect of <br /><span class="italic font-normal">Silence.</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    In 1958, a quiet revolution began in a Rio de Janeiro bathroom. Armed only with a nylon-string
+                    guitar and a whisper-thin voice, João Gilberto stripped Samba to its bones and reinvented the rhythm
+                    of the world.
+                </p>
+                <div class="flex gap-4 pt-4">
+                    <button
+                        class="bg-secondary text-on-secondary px-8 py-3 font-label-caps text-label-caps hover:bg-on-secondary-fixed transition-colors border border-on-secondary-fixed">
+                        READ MANIFESTO
+                    </button>
+                    <button
+                        class="border border-outline px-8 py-3 font-label-caps text-label-caps hover:bg-surface-variant transition-colors">
+                        VIEW ARCHIVE
+                    </button>
+                </div>
+            </div>
+            <div class="lg:col-span-5 relative">
+                <div class="scrapbook-border p-4 bg-surface-container-high rotate-2 shadow-sm">
+                    <img alt="João Gilberto inspiration" class="w-full grayscale contrast-125 sepia-[0.3]"
+                        data-alt="Vintage sepia photograph of a classical acoustic guitar leaning against a textured plaster wall in soft morning light"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP1N02wbbwlgsmiDcBYVIM3zd3EIWP-4_TSKwABWHuKJF6kCKDQLjpLGV2wpgAXWI8p7BlV1kt5Eo5B5HcofMP1mDmnddLq5PpE_vlorgN2aeMAYsHYSbPevmFgfrrJVNcfk1Ddn3EOKmXwVe11DJ3V7CcFvBDPm4rOBh_qyA8EcmZ14GoP4F5I1hERsIhEiyj7gQhfiCOavgMN4LWp-JOaz9zBdiN2MDzQYRQSy_432TylDJvn9NtIYJYz6KSe_oHSvOrk8qkIZc" />
+                    <div class="mt-4 font-serif italic text-sm text-center text-outline">
+                        "Eis aqui este sambista..." - Rio, circa 1959
+                    </div>
+                </div>
+                <!-- Decorative Element -->
+                <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-tertiary-fixed-dim/20 rounded-full blur-2xl -z-10">
+                </div>
+            </div>
+        </section>
+        <!-- The Guitar Section (O Violão) -->
+        <section class="mb-32 border-t border-dashed border-outline pt-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="relative w-64 h-64 mx-auto md:ml-0 group">
+                        <div class="absolute inset-0 vinyl-groove rounded-full border-4 border-on-surface shadow-2xl">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div
+                                class="w-20 h-20 bg-secondary-fixed-dim rounded-full border-2 border-on-surface flex items-center justify-center">
+                                <div class="w-2 h-2 bg-on-surface rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p
+                        class="mt-12 font-label-caps text-label-caps text-secondary text-center md:text-left tracking-[0.2em]">
+                        RHYTHMIC REVOLUTION</p>
+                </div>
+                <div class="order-1 md:order-2 space-y-6">
+                    <h2 class="font-headline-lg text-headline-lg text-primary">O Violão: The Syncopated Heart</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Gilberto’s "batida" was a geometric miracle. He decoupled the thumb—mimicking the deep surdo
+                        drum—from the fingers, which plucked the intricate patterns of the tamborim. It was samba
+                        condensed into a single wooden box.
+                    </p>
+                    <ul class="space-y-4 pt-4">
+                        <li class="flex items-start gap-3">
+                            <span class="w-3 h-3 mt-1.5 bg-secondary rotate-45 shrink-0"></span>
+                            <span class="font-body-md text-on-surface">The Thumb: A steady, driving pulse that anchors
+                                the rhythm.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-3 h-3 mt-1.5 bg-secondary rotate-45 shrink-0"></span>
+                            <span class="font-body-md text-on-surface">The Fingers: Off-beat syncopation that creates
+                                "balanço" (swing).</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-3 h-3 mt-1.5 bg-secondary rotate-45 shrink-0"></span>
+                            <span class="font-body-md text-on-surface">Dynamics: Playing at the edge of audibility to
+                                demand total focus.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Discography Bento Grid -->
+        <section class="mb-32">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h2 class="font-display-lg text-headline-lg text-primary">Chega de Saudade</h2>
+                    <p class="font-serif italic text-secondary">The 1959 Masterpiece</p>
+                </div>
+                <div class="sepia-rule flex-grow mx-8 hidden md:block mb-3"></div>
+                <div class="font-label-caps text-label-caps text-outline">CATALOG NO. ODEON 3073</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Main Album Cover Card -->
+                <div class="md:col-span-2 lg:col-span-2 bg-surface-container-low p-8 border border-outline relative">
+                    <div class="aspect-square bg-surface-dim mb-6 flex items-center justify-center overflow-hidden">
+                        <img alt="Album Art Concept" class="w-full h-full object-cover mix-blend-multiply opacity-80"
+                            data-alt="Minimalist graphic of a vinyl record sleeve with geometric shapes in muted olive green, terracotta, and cream colors"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPMtK4r-Hd2YjhLtWdPadTd3Twcu1HZPVkvLVa8z_fZy--ErGaO8wHkLvh8vqAg-i8hhqUMGYYB62dnCLncUsdr2axY46krRh8lGpm_cHhR1m461qSvWB2HHUR43SSLwGF_3f36mksgnjLt_-XcGQmgT0XFg95C2lab8umVwv912v4hwmt2YO6WhnllcIkZYBv6wpe1b4FpSdTcYDOMNbgLB-UPN9243bHUJuV2iABUvoZ1CG2F1VxuC1rxWVeztWXc6x4v20AemI" />
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-primary mb-2">Chega de Saudade</h3>
+                    <p class="text-on-surface-variant font-body-md">The album that changed music history. 12 tracks of
+                        pure, distilled bossa nova essence.</p>
+                </div>
+                <!-- Tracklist Card -->
+                <div class="bg-surface-container-high border border-outline p-6 flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-label-caps text-label-caps text-secondary mb-4">SIDE A</h4>
+                        <ol class="space-y-3 font-serif text-sm">
+                            <li class="flex justify-between border-b border-outline/20 pb-1"><span>1. Chega de
+                                    Saudade</span><span>2:01</span></li>
+                            <li class="flex justify-between border-b border-outline/20 pb-1"><span>2. Lobo
+                                    Bobo</span><span>1:20</span></li>
+                            <li class="flex justify-between border-b border-outline/20 pb-1"><span>3.
+                                    Briggs</span><span>1:46</span></li>
+                            <li class="flex justify-between border-b border-outline/20 pb-1"><span>4.
+                                    Desafinado</span><span>1:58</span></li>
+                        </ol>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-dashed border-outline">
+                        <span class="material-symbols-outlined text-secondary"
+                            data-icon="play_circle">play_circle</span>
+                        <span class="font-label-caps text-[10px] ml-2">LISTEN TO ARCHIVE</span>
+                    </div>
+                </div>
+                <!-- Influence Card -->
+                <div
+                    class="bg-primary text-on-primary p-6 flex flex-col justify-center items-center text-center space-y-4">
+                    <span class="material-symbols-outlined text-4xl" data-icon="public">public</span>
+                    <h4 class="font-headline-md text-headline-md leading-tight">Global Impact</h4>
+                    <p class="text-sm font-body-md opacity-90 italic">"He could read the newspaper and it would sound
+                        like music." — Miles Davis</p>
+                </div>
+                <!-- Asymmetric Collage Element -->
+                <div class="lg:col-span-2 bg-secondary-container/30 p-8 border border-outline flex items-center gap-6">
+                    <div class="w-1/3 scrapbook-border corner-tl corner-tr p-1 bg-surface rotate-[-3deg]">
+                        <img alt="Studio Gear" class="w-full grayscale"
+                            data-alt="Close-up of a vintage tube amplifier with glowing orange lights and brushed metal knobs in a dark studio"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANMWk3oFal9m4Pmkf5xEQ6aLJXUMxtZGGJZOYOtZAks0cEF51Gf7z42GjMtQa0ksN6R1sPBmn6woFd-UifzX6Uucw4oOMYO8eytCsDaxUCQHEcgYWx31EvuBgFFmvehlw5Z8EVwvQ7z4xsK4rYeeRV29LVhnbhmPj8okEyXzQxiZo9M6f4H0iZynHfiMuNkFmQFM1zQ6-e4i9ptAPROO8cCqTTozws3RylWIqwas0cVKgIZ_rQSss9dTxsqJOmPQoUa-dk1MAXqlg" />
+                    </div>
+                    <div class="w-2/3">
+                        <h4 class="font-label-caps text-label-caps text-secondary mb-2">TECHNICAL NOTES</h4>
+                        <p class="text-xs font-body-md text-on-surface-variant italic">Recording sessions at Odeon
+                            Studios utilized a single Neumann microphone positioned precisely six inches from the
+                            guitar's soundhole to capture the breath of the instrument.</p>
+                    </div>
+                </div>
+                <!-- Quote Box -->
+                <div class="lg:col-span-2 bg-surface p-12 flex items-center justify-center border-y border-outline">
+                    <p class="font-display-lg text-headline-lg text-primary italic text-center leading-tight">
+                        "Bossa nova is a cool way of saying 'I love you.'"
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- The Legacy Section -->
+        <section class="mb-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <h2 class="font-headline-lg text-display-lg text-primary">A Legacy in <br />Mono.</h2>
+                <div class="space-y-4 font-body-lg text-on-surface-variant">
+                    <p>João’s influence reached far beyond the shores of Ipanema. From the jazz clubs of New York to the
+                        studios of Tokyo, his economy of style became a benchmark for musical sophistication.</p>
+                    <p>He taught us that quietness is not weakness, and that complexity often hides in the simplest of
+                        gestures.</p>
+                </div>
+                <div class="pt-6 border-l-4 border-secondary pl-6 italic font-serif text-on-surface">
+                    "João Gilberto is the man who created the modern world... at least the one I want to live in."
+                </div>
+            </div>
+            <div class="relative">
+                <div class="bg-surface-container-highest p-2 scrapbook-border -rotate-1 shadow-md">
+                    <img alt="Legacy" class="w-full h-96 object-cover contrast-150 grayscale"
+                        data-alt="Dramatic silhouette of a musician performing on stage with a spotlight creating high contrast and long shadows"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBduGtTlJYZ5MeH_W7sf33_NTco2uOjXvZ5IMgVCyfBJlmQTCFWtO-JPG_PFVASTgUf59Xbg_JsCBSI9hgU8owe64fcG6848x_8uyeUjXizPBYtsvnKvhtG4DLa9oKSI1eRCYQVrfYfCM3BVA0G3zhKhiKcc583nZcIqCSi1MHQjYyFmYCHdPD3HMUt263S5DRveozWi-rd01grYxnbKIWh4yPboXLvarrCbAXxD7QGJ1SyBJaEEj9j5Lp9mpyhomkfkCQVYmijyH8" />
+                </div>
+                <div
+                    class="absolute top-1/2 -right-4 w-12 h-40 bg-tertiary-fixed border border-on-surface -z-10 rotate-12">
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer from JSON -->
+    <footer
+        class="bg-[#EFEBE0] dark:bg-[#141412] w-full border-t border-dashed border-stone-400 dark:border-stone-700 mt-20">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6 w-full max-w-screen-2xl mx-auto">
+            <div class="text-lg font-bold text-stone-700 dark:text-stone-300">
+                Bossa Nova Echoes
+            </div>
+            <nav class="flex gap-8">
+                <a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-all duration-300"
+                    href="#">History</a>
+                <a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-all duration-300"
+                    href="#">Genres</a>
+                <a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-all duration-300"
+                    href="#">Manifesto</a>
+                <a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-all duration-300"
+                    href="#">Archive</a>
+            </nav>
+            <div class="font-serif text-xs uppercase tracking-widest text-stone-500 text-center md:text-right">
+                © 1958 Saudade Digital Archive. A Tribute to MPB Pioneers.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

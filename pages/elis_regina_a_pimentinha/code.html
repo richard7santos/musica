@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#f0bd8b",
+                        "inverse-surface": "#313124",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#e3bf65",
+                        "on-secondary-container": "#7a532a",
+                        "on-secondary-fixed": "#2c1600",
+                        "surface-bright": "#fdfae7",
+                        "surface-variant": "#e6e3d0",
+                        "primary-container": "#2d5a27",
+                        "outline-variant": "#c2c9bb",
+                        "on-primary-fixed": "#002201",
+                        "on-primary-container": "#9dd090",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5a4400",
+                        "tertiary-fixed-dim": "#e7c268",
+                        "surface-container-highest": "#e6e3d0",
+                        "outline": "#72796e",
+                        "on-tertiary-fixed": "#251a00",
+                        "tertiary-fixed": "#ffdf96",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fdfae7",
+                        "secondary": "#7d562d",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#654d00",
+                        "on-secondary-fixed-variant": "#623f18",
+                        "secondary-fixed": "#ffdcbd",
+                        "background": "#fdfae7",
+                        "on-background": "#1c1c11",
+                        "surface-dim": "#dddbc8",
+                        "surface-container": "#f1eedb",
+                        "inverse-on-surface": "#f4f1de",
+                        "surface-tint": "#3b6934",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f7f4e1",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#bcf0ae",
+                        "tertiary": "#493700",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1c1c11",
+                        "primary-fixed-dim": "#a1d494",
+                        "primary": "#154212",
+                        "on-surface-variant": "#42493e",
+                        "secondary-container": "#ffca98",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#23501e",
+                        "inverse-primary": "#a1d494",
+                        "surface-container-high": "#ece9d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Noto Serif"],
+                        "body-md": ["Work Sans"],
+                        "headline-md": ["Noto Serif"],
+                        "headline-lg": ["Noto Serif"],
+                        "label-caps": ["Work Sans"],
+                        "body-lg": ["Work Sans"]
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .groove-pattern {
+            background-image: repeating-radial-gradient(circle at center, transparent 0, transparent 2px, rgba(0, 0, 0, 0.05) 3px, rgba(0, 0, 0, 0.05) 4px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container">
+    <div class="noise-overlay"></div>
+    <!-- TopAppBar -->
+    <header class="bg-[#F5F2EA] border-b border-stone-300 w-full sticky top-0 z-50">
+        <div class="flex justify-between items-center px-8 py-6 w-full max-w-screen-2xl mx-auto">
+            <div class="text-2xl font-black italic tracking-tighter text-[#2D5A27]">Bossa Nova Echoes</div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-stone-600 font-serif hover:text-[#2D5A27] transition-all duration-300"
+                    href="../../index.html">Artists</a>
+            </nav>
+            <div class="flex items-center gap-4 text-[#2D5A27]">
+                <button class="p-2 hover:bg-stone-100/50 rounded-full transition-all duration-300">
+                    <span class="material-symbols-outlined" data-icon="album">album</span>
+                </button>
+                <button class="p-2 hover:bg-stone-100/50 rounded-full transition-all duration-300">
+                    <span class="material-symbols-outlined" data-icon="search">search</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-screen-2xl mx-auto px-8 md:px-12 py-12">
+        <!-- Hero Section: Poster Style -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-24 items-end">
+            <div class="md:col-span-7 relative">
+                <div class="border border-outline p-4 bg-surface-container-low shadow-sm">
+                    <img class="w-full aspect-[4/5] object-cover grayscale contrast-125"
+                        data-alt="Vintage grainy black and white portrait of Elis Regina singing with intense emotion, 1960s Brazil style, soft highlights"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY5-BsLtavRSf46f-SYD661aO9oJzH6h8I0F3dG7c4DMcPBmfaNKWfKgCMntgsZVC0VTFHemb8JS2kYHTI2Jvs-4xLCvw1gniC7CfvleTYxlNSFBpJpOokiWxv4Abr2htmn1MCxUzsSEm4aMWZfW4VMzbAC8ZZA_FKaVQ9u7kKB5HYsxVd1gIM-qVtQ7HonMwIq4iaUHOGq73mp2xE1FiBgaZCZ2e7m7tj5HwpvctnbX-9Gk7-Nc_0ACC7jMNYoqQ1kpaP8zUEuNA" />
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="font-label-caps text-label-caps text-secondary">REGISTRO N. 1945</span>
+                        <span class="font-label-caps text-label-caps text-secondary">PORTO ALEGRE, RS</span>
+                    </div>
+                </div>
+                <!-- Asymmetric Floating Element -->
+                <div
+                    class="absolute -bottom-8 -right-8 bg-secondary text-surface p-6 border border-on-secondary hidden lg:block max-w-xs">
+                    <p class="font-serif italic text-lg leading-tight">"A voz que uniu a técnica perfeita ao sentimento
+                        visceral da alma brasileira."</p>
+                </div>
+            </div>
+            <div class="md:col-span-5 flex flex-col justify-end">
+                <h1
+                    class="font-display-lg text-[84px] leading-[0.85] uppercase tracking-tighter text-primary mb-8 break-words">
+                    Elis<br />Regina
+                </h1>
+                <div class="border-t border-secondary pt-6">
+                    <p class="font-body-lg text-body-lg text-on-surface-variant mb-6">
+                        Known as "Pimentinha" (Little Pepper), Elis was the definitive interpreter of the MPB movement,
+                        bridging the gap between the sophisticated bossa nova and the experimental Tropicália.
+                    </p>
+                    <div class="flex gap-4">
+                        <button
+                            class="bg-secondary text-surface px-8 py-3 border border-secondary font-label-caps hover:bg-transparent hover:text-secondary transition-colors">
+                            LISTEN TO ARCHIVE
+                        </button>
+                        <button
+                            class="border border-outline px-8 py-3 font-label-caps hover:bg-surface-container-high transition-colors">
+                            READ MANIFESTO
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Separation Line -->
+        <div class="w-full border-t border-outline-variant mb-20"></div>
+        <!-- Vocal Range & Technique Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-24">
+            <div class="md:col-span-1">
+                <h2 class="font-headline-lg text-headline-lg text-primary mb-4 flex items-center gap-2">
+                    <span class="text-secondary">■</span> The Vocal Range
+                </h2>
+                <p class="font-body-md text-body-md text-on-surface-variant">
+                    Technically impeccable, Elis possessed a mezzo-soprano range characterized by agile phrasing and a
+                    "metalized" timbre that could pierce through any orchestral arrangement.
+                </p>
+            </div>
+            <div class="md:col-span-2 grid grid-cols-2 gap-4">
+                <div class="bg-surface-container p-8 border border-outline-variant relative overflow-hidden">
+                    <div class="groove-pattern absolute inset-0 opacity-10"></div>
+                    <span class="font-label-caps text-label-caps text-secondary block mb-2">PRECISION</span>
+                    <h3 class="font-headline-md text-headline-md mb-2">Micro-Timing</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant relative z-10">Her ability to stay
+                        slightly behind or ahead of the beat was a signature bossa nova trait perfected into high art.
+                    </p>
+                </div>
+                <div class="bg-surface-container p-8 border border-outline-variant relative overflow-hidden">
+                    <div class="groove-pattern absolute inset-0 opacity-10"></div>
+                    <span class="font-label-caps text-label-caps text-secondary block mb-2">DYNAMICS</span>
+                    <h3 class="font-headline-md text-headline-md mb-2">Control</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant relative z-10">From a whisper in Jobim's
+                        ear to a thunderous roar at the festivals, her dynamic range remains unmatched.</p>
+                </div>
+            </div>
+        </section>
+        <!-- O Fino da Bossa Section -->
+        <section class="mb-24 bg-inverse-surface text-inverse-on-surface p-12 relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span
+                        class="font-label-caps text-label-caps text-on-tertiary-container border border-on-tertiary-container px-3 py-1 mb-6 inline-block">LIVE
+                        ON TV RECORD</span>
+                    <h2 class="font-display-lg text-display-lg mb-6 text-tertiary-fixed">O Fino da Bossa</h2>
+                    <p class="font-body-lg text-body-lg mb-8 opacity-80">
+                        The 1965 television show that cemented her as a superstar. Alongside Jair Rodrigues, Elis hosted
+                        a program that defined the aesthetic standards of Brazilian popular music for a generation.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-2 bg-secondary transform rotate-45"></span>
+                            <span class="font-body-md">Debuted "Arrastão" at the 1965 Festival.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-2 bg-secondary transform rotate-45"></span>
+                            <span class="font-body-md">The legendary partnership with Jair Rodrigues.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-2 bg-secondary transform rotate-45"></span>
+                            <span class="font-body-md">Live orchestrations that challenged the status quo.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="border-4 border-on-surface-variant p-2 rotate-2 shadow-2xl">
+                    <img class="w-full grayscale"
+                        data-alt="Candid shot of Elis Regina and Jair Rodrigues laughing together on the set of O Fino da Bossa, high contrast stage lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLEXo2bP3uMvPBTsALCeW-gnqxbjpOPTC8cKcpPy8-0n8S9ktfSPS2JsANqBvxvWDiPyGMHPP4ContA9hIDffdzTaXWmEFRjNowq3tH7_2hAJ23s-Nj4Vq04Ysssvi3NxevERor-5ZQhAkWkIu8u268hJAvfWllhYwGJjK-K8HQmUXiWu-n-JaavblsCRe4Tf79ZY_Uxs3prfhAbJgrQISXTvlR7HUt_zr5_PvwhH9fz4j8DeEC3pya0ns2nW_JYEpVEucCfjSQEs" />
+                </div>
+            </div>
+        </section>
+        <!-- Elis & Tom: Bento Grid Style -->
+        <section class="mb-24">
+            <div class="flex items-baseline gap-4 mb-12">
+                <h2 class="font-display-lg text-display-lg text-primary">Elis &amp; Tom</h2>
+                <span class="text-secondary font-serif text-xl italic">Los Angeles, 1974</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div
+                    class="md:col-span-2 md:row-span-2 bg-surface-container-high border border-outline p-8 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-headline-lg text-headline-lg mb-4">The Meeting of Giants</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">The album recorded at MGM Studios
+                            is often cited as the greatest Brazilian record ever made. It brought together Jobim's
+                            minimalism and Elis's technical exuberance.</p>
+                    </div>
+                    <div class="mt-8 border-t border-outline-variant pt-4">
+                        <span class="material-symbols-outlined text-secondary text-4xl"
+                            data-icon="music_note">music_note</span>
+                    </div>
+                </div>
+                <div class="md:col-span-2 bg-[#EFEBE0] border border-outline p-6 flex gap-6 items-center">
+                    <img class="w-24 h-24 rounded-full border border-secondary shadow-inner"
+                        data-alt="Close up of a vinyl record label for Elis &amp; Tom album, warm sepia tones, 70s typography"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9jbasd6IaJLRnp4MgIsqcIWepGtt971rxgiON5LRj0Qat1ddV3z_iYoNBN0_INhLItS2xO_UfgNQ8hHBRacCS4dd3N2TPX9Hw3gqnAWTlczIfnIaAOFXqKOVyU05fzCHtvzlB8Sz6uvBx_pl9ExkNi8m3FE5jGKs0YQhZyFAqgo_AWC-P_APQEPcducqUxNoCSdiBbaUcYtpVBfcaqkHZ8CcFraaQFK2_taiVbsDg1thiu4t1T_LxMaQqQmpxUEZx5ArA5TF7tz0" />
+                    <div>
+                        <h4 class="font-headline-md text-headline-md">Águas de Março</h4>
+                        <p class="font-label-caps text-label-caps text-secondary">TRACK 01 • MASTERPIECE</p>
+                    </div>
+                </div>
+                <div class="bg-secondary-container border border-outline p-6">
+                    <p class="font-serif italic text-lg leading-tight text-on-secondary-container">"Tom was the teacher,
+                        Elis was the force of nature."</p>
+                </div>
+                <div class="bg-surface border border-outline p-6 flex flex-col justify-center items-center text-center">
+                    <span class="font-display-lg text-display-lg text-primary">14</span>
+                    <span class="font-label-caps text-label-caps">IMMORTAL TRACKS</span>
+                </div>
+            </div>
+        </section>
+        <!-- Music Review Excerpt -->
+        <section class="max-w-3xl mx-auto border-y border-dashed border-outline-variant py-12 px-6 text-center">
+            <span class="material-symbols-outlined text-secondary mb-4" data-icon="format_quote" data-weight="fill"
+                style="font-variation-settings: 'FILL' 1;">format_quote</span>
+            <p class="font-serif text-2xl text-on-surface italic leading-relaxed">
+                "Her voice didn't just carry notes; it carried the entire weight of the Brazilian socio-political
+                landscape. She sang with the urgency of someone who knew that every second on stage was a chance to
+                define reality."
+            </p>
+            <p class="font-label-caps text-label-caps mt-6 text-secondary">— SAUDADE DIGITAL ARCHIVE, 1982 RETROSPECTIVE
+            </p>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#EFEBE0] border-t border-dashed border-stone-400 mt-20 w-full">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6 w-full max-w-screen-2xl mx-auto">
+            <div class="text-lg font-bold text-stone-700">Bossa Nova Echoes</div>
+            <div class="flex gap-8">
+                <a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800"
+                    href="#">History</a>
+                <a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800"
+                    href="#">Genres</a>
+                <a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800"
+                    href="#">Manifesto</a>
+                <a class="font-serif text-xs uppercase tracking-widest text-stone-500 hover:text-stone-800"
+                    href="#">Archive</a>
+            </div>
+            <div class="font-serif text-xs uppercase tracking-widest text-stone-500">© 1958 Saudade Digital Archive. A
+                Tribute to MPB Pioneers.</div>
+        </div>
+    </footer>
+</body>
+
+</html>
